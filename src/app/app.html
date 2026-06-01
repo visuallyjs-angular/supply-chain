@@ -1,0 +1,32 @@
+<div class="vjs-supply-chain">
+  <div class="vjs-supply-chain-toolbar">
+    <strong>Supply Chain Analyzer</strong>
+    <div class="pivot-controls">
+      <span>Pivot Sankey:</span>
+      <select [(ngModel)]="pivotProperty">
+        <option value="">Direct (No Pivot)</option>
+        <option value="transitMode">By Transit Mode</option>
+        <option value="carrier">By Carrier</option>
+      </select>
+    </div>
+  </div>
+  <div class="vjs-supply-chain-canvas">
+      <supply-chain-palette></supply-chain-palette>
+      <div class="vjs-supply-chain-view-panel">
+        <vjs-surface url="/dataset.json"
+                     [modelOptions]="modelOptions"
+                     [renderOptions]="renderOptions"
+                     [viewOptions]="viewOptions">
+          <vjs-controls/>
+        </vjs-surface>
+        <supply-chain-inspector></supply-chain-inspector>
+      </div>
+      <div class="vjs-supply-chain-view-panel">
+        <vjs-sankey-chart style="height:500px"
+                          [useModel]="true"
+                          [options]="sankeyOptions"
+                          [pivot]="pivotProperty">
+        </vjs-sankey-chart>
+      </div>
+  </div>
+</div>
